@@ -23,6 +23,24 @@ class Player {
       '$name - ☠️',
       '$name - 🧟‍♂️',
       'BANG $name',
+      'Hanno ammazzato $name',
+      '$name ha trovato Dio',
+      ' $name che cazzo di casino',
+      '$name culo',
+      'RIP $name',
+      '$name, mi spiace',
+      '"E poi $name esplose"',
+      'Mh. Sono molto deluso da te, $name',
+      'La vita di $name è giunta al termine',
+      '$name ci ha lasciato.',
+      'Qualcuno ha visto $name?',
+      '$name KAPUT',
+      'BANG $name',
+      '$name non è più tra noi',
+      '$name! Sei proprio una donna',
+      'Hasta la vista, $name',
+      'È finito il tempo delle mele, $name',
+      '$name!! Dovevi vincere!!',
     ];
     final random = Random();
     return deadlines[random.nextInt(deadlines.length)];
@@ -31,6 +49,25 @@ class Player {
   String getRandomHeart() {
     final emojis = ['❤️', '💚', '💙', '🧡', '❤️‍🔥', '💘', '💝', '💖'];
     final random = Random();
+
+    if (name.toLowerCase() == 'cipo') {
+      return '🧅';
+    } else if (name.toLowerCase() == 'mimmo') {
+      return '💩';
+    } else if (name.toLowerCase() == 'phil') {
+      return '🍩';
+    } else if (name.toLowerCase() == 'guazzoni') {
+      return '🍑';
+    } else if (name.toLowerCase() == 'paolo') {
+      return '🛳️';
+    } else if (name.toLowerCase() == 'gatto') {
+      return '🐱';
+    } else if (name.toLowerCase() == 'sampi') {
+      return '📦';
+    } else if (name.toLowerCase() == 'glo') {
+      return '😽';
+    }
+
     return emojis[random.nextInt(emojis.length)];
   }
 
@@ -59,7 +96,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: const MainScreen(),
       // theme: ThemeData.light(), // light theme
-      theme: ThemeData.dark(), // dark theme
+      // theme: ThemeData.dark(), // dark theme
     );
   }
 }
@@ -75,6 +112,8 @@ class MainScreen extends StatefulWidget {
 // players screen state
 class _MainScreenState extends State<MainScreen> {
   List<Player> players = [];
+  // history of actions: [playerIndex, actionType (0 = removeLife, 1 = addLife)]
+  List<List<int>> history = [];
 
   @override
   void initState() {
@@ -123,6 +162,7 @@ class _MainScreenState extends State<MainScreen> {
     if (players[index].lives > 0) {
       setState(() {
         players[index].removeLife();
+        history.add([index, 0]);
         savePlayers();
       });
     } else {
@@ -134,16 +174,28 @@ class _MainScreenState extends State<MainScreen> {
     if (players[giverIndex].lives > 0) {
       setState(() {
         players[giverIndex].removeLife();
+        history.add([giverIndex, 0]);
         players[receiverIndex].extraEmoji += players[giverIndex].emoji;
+        history.add([receiverIndex, 1]);
         savePlayers();
       });
     }
   }
 
   void undoAction() {
-    if (players.length > 1) {
+    if (history.isNotEmpty && history.last.length == 2) {
       setState(() {
-        // TODO: undo action
+        int index = history.last[0];
+        int action = history.last[1];
+
+        if (players.length > index) {
+          if (action == 0) {
+            players[index].lives++;
+          } else {
+            players[index].removeLife();
+          }
+        }
+        history.removeLast();
         // savePlayers();
       });
     }

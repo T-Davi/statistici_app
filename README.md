@@ -42,7 +42,7 @@ Inoltre, è presente un pulsante per annullare l'ultima azione, uno per aggiunge
 
 #### TODO
 
-- [ ] Organizzazione pagine;
-- [ ] Aggiunta emoji, frasi e easteregg;
-- [ ] Implementazione funzionalità annullo azione;
+- [x] Aggiunta emoji, frasi e easteregg;
+- [x] Implementazione funzionalità annullo azione;
 - [ ] Implementazione funzionalità salva giocatore;
+- [ ] Aggiunta delle altre pagine;
