@@ -97,6 +97,10 @@ class MyApp extends StatelessWidget {
       home: const MainScreen(),
       // theme: ThemeData.light(), // light theme
       // theme: ThemeData.dark(), // dark theme
+      // use system theme
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
+      themeMode: ThemeMode.system,
     );
   }
 }

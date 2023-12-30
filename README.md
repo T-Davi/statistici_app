@@ -19,11 +19,22 @@ Nel gioco da una carta, chi prende la mano e aveva dichiarato che l'avrebbe pres
 
 ## Come funziona l'app
 
-L'app è composta da tre pagine:
+L'app è composta da una sola pagina in cui è possibile gestire lo svolgimento di una partita.
+È composta dalla lista dei giocatori, un pulsante per aggiungerli e un pulsante per annulare l'ultima azione.
+Nella lista, ogni giocatore viene visualizzato con:
 
-- La pagina principale con la cronologia delle partite;
-- La pagina di gestione dei giocatori salvati;
-- La pagina di gestione della partita.
+- Il nome asseganto in fase di creazione;
+- Le sue vite rappresentate come emoji;
+- Un pulsante per rimuovere una vita.
+- Un pulsante per rubare una vita ad un altro giocatore.
+
+## Possibili miglioramenti
+
+Aggiunta di tre pagine:
+
+- Pagina principale con la cronologia delle partite;
+- Pagina di gestione dei giocatori salvati;
+- Pagina di gestione della partita.
 
 ### Pagina principale
 
@@ -40,9 +51,19 @@ Inoltre, è presente un pulsante per tornare alla pagina iniziale e uno per crea
 La pagina di gestione della partita è composta da una lista di giocatori, ognuno dei quali ha un nome, delle vite e un pulsante per aggiungerle o rimuoverle.
 Inoltre, è presente un pulsante per annullare l'ultima azione, uno per aggiungere un giocatore e uno per tornare alla pagina iniziale.
 
+### Aggiunta dell'icona per android
+
+L'icona per android si trova nel file xip `statistici_icon.zip` e va inserita nella cartella `android/app/src/main/res/mipmap-*`.
+
+Va poi aggiornato il file `android/app/src/main/AndroidManifest.xml` con la seguente riga:
+
+```xml
+android:icon="@mipmap/statistici_icon"
+```
+
 #### TODO
 
 - [x] Aggiunta emoji, frasi e easteregg;
 - [x] Implementazione funzionalità annullo azione;
 - [ ] Implementazione funzionalità salva giocatore;
-- [ ] Aggiunta delle altre pagine;
+- [ ] Aggiunta dei miglioramenti;
